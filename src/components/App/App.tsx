@@ -7,6 +7,7 @@ import { useState } from 'react';
 import MovieGrid from '../MovieGrid/MovieGrid';
 import Loader from '../Loader/Loader';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import MovieModal from '../MovieModal/MovieModal';
 
 export default function App() {
     const [movies, setMovies] = useState<Movie[]>([]);
@@ -34,13 +35,16 @@ export default function App() {
     }
     const handleSelect = (movie: Movie) => {
         setSelectedMovie(movie);
-}
+    }
+    const handleCloseModal = () => {
+        setSelectedMovie(null);
+    }
     return (
         <div className={css.app}>
         <Toaster/>
             <SearchBar onSubmit={handleSearch} />
             {loader ? (<Loader />) : error ? (<ErrorMessage />) : (movies.length > 0 && <MovieGrid onSelect={handleSelect} movies={movies} />)}
-            {selectedMovie && <MovieModal />}
+            {selectedMovie && <MovieModal movie={selectedMovie} onClose={handleCloseModal} />}
 </div>
     )
 }
