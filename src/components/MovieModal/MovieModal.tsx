@@ -37,8 +37,8 @@ export default function MovieModal({ movie, onClose }: MovieModalProps) {
                     className={css.image}
                 />
                 <div className={css.content}>
-                    <h2>movie_title</h2>
-                    <p>movie_overview</p>
+                    <h2>{movie.title}</h2>
+                    <p>{movie.overview}</p>
                     <p>
                         <strong>Release Date:</strong> {movie.release_date}
                     </p>
